@@ -35,7 +35,7 @@ public class NumberGuessingGameWithAMenu {
                     System.out.println("***************");
                     int randomNum = (int)(Math.random() * 10) + 1;
                     boolean flag = false;
-                    System.out.print("Please enter a number you guess ^v^ : ");
+                    System.out.print("Please enter a number you guess ^v^ (1~10): ");
                     for(int i = 0; i < 5; i++){
                         int myNum= getIntInRange(sc, 1, 10);
                         if(randomNum == myNum){
