@@ -2,15 +2,17 @@
 
 ## 🖥️ Test Results
 
-### 1. Correct Guess Case
+### 1. Correct Guess Case and Successfully Exit
 **Description:**  
 Player guesses the correct number before using all 5 attempts.  
 **Expected behavior:**  
 - Program shows `"Correct!"` and ends the round immediately.  
 - Menu appears again after the game ends.
+- If the player then chooses **2 (Exit)**, the program displays a goodbye message and terminates successfully.
 
 **Sample Output:**
-<img width="774" height="833" alt="image" src="https://github.com/user-attachments/assets/e6a4d9bd-fda6-4877-be7d-240677cfd0e4" />
+
+<img width="740" height="815" alt="image" src="https://github.com/user-attachments/assets/c1aeb384-1fdb-4ccd-9f29-597ed4c6260b" />
 
 
 ### 2. Five Attempts Used
@@ -21,6 +23,7 @@ Player fails to guess the number in 5 attempts.
 - Menu appears again.
 
 **Sample Output:**
+
 <img width="873" height="896" alt="image" src="https://github.com/user-attachments/assets/bc2626ee-e469-419d-8a3c-bc76633418d0" />
 
 ### 3. Invalid Input – Non-numeric Test
