@@ -11,6 +11,10 @@ public class FullTimeStudent extends Student{
     public FullTimeStudent(String name) {
         super(name);
         this.examScores = new ArrayList<>();
+        //initialize exam scores
+        for(int i = 0; i < TOTAL_EXAM; i++){
+            examScores.add(0.0);
+        }
     }
 
     public List<Double> getExamScores() {

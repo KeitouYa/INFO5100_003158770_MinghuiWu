@@ -30,7 +30,6 @@ public class Session {
         for(Student student : students){
             System.out.print(student.getName() + ", ");
             System.out.printf("%.2f%n", student.getAverageQuizScore());
-            System.out.println();
         }
         System.out.println();
     }
@@ -44,8 +43,14 @@ public class Session {
         Collections.sort(allQuizScores);
 
         System.out.println("=== All quiz scores in ascending order ===");
+        System.out.println("(Note: Scores are displayed 10 per line for better readability.)");
+        int count = 0;
         for(double score : allQuizScores){
-            System.out.printf("%.2f%n",score);
+            System.out.printf("%.2f ",score);
+            count++;
+            if(count % 10 == 0){
+                System.out.println();
+            }
         }
         System.out.println();
     }
@@ -67,7 +72,7 @@ public class Session {
             if(student instanceof FullTimeStudent){
                 FullTimeStudent fullTimeStudent = (FullTimeStudent)student;
                 System.out.println("Student: " + fullTimeStudent.getName());
-                List<Double> fullTimeExamScores = fullTimeStudent.examScores;
+                List<Double> fullTimeExamScores = fullTimeStudent.getExamScores();
                 for(int i = 0; i < fullTimeExamScores.size(); i++){
                     System.out.printf("Exam" + (i + 1) + ": %.2f%n", fullTimeExamScores.get(i));
                 }
@@ -75,8 +80,4 @@ public class Session {
             }
         }
     }
-
-
-
-
 }

@@ -11,6 +11,10 @@ public class Student {
     public Student(String name){
         this.name = name;
         this.quizScores = new ArrayList<Double>();
+        //initialize quiz scores
+        for(int i = 0; i < TOTAL_QUIZZES; i++){
+            quizScores.add(0.0);
+        }
     }
 
     public String getName() {
@@ -38,7 +42,7 @@ public class Student {
         return -1;
     }
 
-    public void setTotalQuizzes(int quizNumber, double score){
+    public void setSingleQuizScore(int quizNumber, double score){
         if(quizNumber >= 0 && quizNumber < TOTAL_QUIZZES && (score >= 0 && score <= 100)){
             quizScores.set(quizNumber, score);
         }
@@ -46,23 +50,20 @@ public class Student {
 
 
     public double getAverageQuizScore(){
-        if(quizScores.isEmpty()){
+        if(quizScores == null || quizScores.isEmpty()){
             return 0.0;
         }
 
         double sum = 0;
         for(double score : quizScores){
-            sum += (double) score;
+            sum += score;
         }
 
-        return sum / TOTAL_QUIZZES;
+        return sum / quizScores.size();
     }
 
     @Override
     public String toString() {
-        return "Student{" +
-                "name='%s'" + name + '\'' +
-                ", quizScores='%.2f" + quizScores +
-                '}';
+        return "Student{name='" + name + "', quizScores=" + quizScores + "}";
     }
 }
