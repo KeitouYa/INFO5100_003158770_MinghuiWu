@@ -4,21 +4,19 @@ import java.util.*;
 
 public class OnlineStoreSystem {
     public static void main(String[] args) {
-        String[] orderDate = {
+        String[] orderData = {
             "John,Laptop,1,899.99", "Sarah,Mouse,2,25.50", "Mike,Keyboard,1,75.00",
             "John,Monitor,1,299.99", "Sarah,Laptop,1,899.99", "Lisa,Mouse,3,25.50",
             "Mike,Headphones,1,150.00", "John,Mouse,1,25.50", "Lisa,Keyboard,2,75.00",
             "Sarah,Monitor,2,299.99", "Mike,Monitor,1,299.99", "Lisa,Headphones,1,150.00"
         };
-        String orderFormat =  "CustomerName,ProductName,Quantity,Price";
-        String[] orderFormats = orderFormat.split(",");
 
         System.out.println("=== ONLINE STORE ORDER PROCESSING SYSTEM ===");
 
         System.out.println("STEP 1: Managing orders with ArrayList");
         List<List<String>> orders = new ArrayList<>();
-        for(int i = 0; i < orderDate.length; i++){
-            String[] strArray = orderDate[i].split(",");
+        for(int i = 0; i < orderData.length; i++){
+            String[] strArray = orderData[i].split(",");
             List<String> list = new ArrayList<>();
             for(int j = 0; j < strArray.length; j++){
                 list.add(strArray[j]);
@@ -29,7 +27,7 @@ public class OnlineStoreSystem {
         System.out.println("Total orders: " +orders.size());
         System.out.println("First 3 orders:");
         for(int i = 0; i < 3; i++){
-            System.out.println(orderDate[i]);
+            System.out.println(orderData[i]);
         }
         System.out.println();
 
@@ -64,7 +62,7 @@ public class OnlineStoreSystem {
         for(String s : products){
             System.out.print(s);
             countProducts++;
-            if(countProducts <= products.size()){
+            if(countProducts < products.size()){
                 System.out.print(",");
             }
         }
@@ -75,16 +73,17 @@ public class OnlineStoreSystem {
 
         System.out.println("STEP 4: Use HashMap for financial summaries");
         HashMap<String, Double> totalSpent = new HashMap<>();
-        HashMap<String, Double> totalQuantity = new HashMap<>();
+        HashMap<String, Integer> totalQuantity = new HashMap<>();
         for(List<String> l : orders){
             String customer = l.get(0);
-            Double price = Double.valueOf(l.get(3));
-            totalSpent.put(customer, totalSpent.getOrDefault(customer, 0.0) + price);
+            int quantity = Integer.parseInt(l.get(2));
+            double price = Double.parseDouble(l.get(3));
+            totalSpent.put(customer, totalSpent.getOrDefault(customer, 0.0) + price * quantity);
         }
         for(List<String> l : orders){
             String product = l.get(1);
-            Double quantity = Double.valueOf(l.get(2));
-            totalQuantity.put(product, totalQuantity.getOrDefault(product, 0.0) + quantity);
+            int quantity = Integer.parseInt(l.get(2));
+            totalQuantity.put(product, totalQuantity.getOrDefault(product, 0) + quantity);
         }
 
 
@@ -95,7 +94,7 @@ public class OnlineStoreSystem {
         System.out.println();
 
         System.out.println("ProductName, TotalQuantity : ");
-        for(Map.Entry<String, Double> entry : totalQuantity.entrySet()){
+        for(Map.Entry<String, Integer> entry : totalQuantity.entrySet()){
             System.out.println(entry.getKey() + ", "+ entry.getValue());
         }
         System.out.println();
@@ -104,10 +103,10 @@ public class OnlineStoreSystem {
         System.out.println("STEP 5: Use Queue to process big orders");
         Queue<String> bigOrders = new ArrayDeque<>();
 
-        for(String order : orderDate){
+        for(String order : orderData){
             String[] parts = order.split(",");
-            int quantity = Integer.valueOf(parts[2]);
-            double price = Double.valueOf(parts[3]);
+            int quantity = Integer.parseInt(parts[2]);
+            double price = Double.parseDouble(parts[3]);
             if(price * quantity >= 200){
                 bigOrders.offer(order);
             }
@@ -116,10 +115,10 @@ public class OnlineStoreSystem {
         System.out.println("Total Big Orders: " + bigOrders.size());
 
         while(!bigOrders.isEmpty()){
-            System.out.println("Processing orders:" + bigOrders.poll());
+            System.out.println("Processing order:" + bigOrders.poll());
         }
 
-        System.out.println("\nAll big orders have been processed.\n");
+        System.out.println("All big orders have been processed.\n");
 
         System.out.println("STEP 6: Use Stack to handle returns");
         Stack<String> returns = new Stack<>();
@@ -130,17 +129,6 @@ public class OnlineStoreSystem {
         while(!returns.isEmpty()){
             System.out.println("Processing return: " + returns.pop());
         }
-        System.out.println("\nAll returns have been processed.\n");
-
-
-
-
-
-
-
-
-
-
-
+        System.out.println("All returns have been processed.\n");
     }
 }
