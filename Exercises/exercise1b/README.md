@@ -1,5 +1,6 @@
 # Exercise 1b – Online Store Order Processing
 
+
 ## Program Output
 
 <img width="1084" height="1087" alt="image" src="https://github.com/user-attachments/assets/e9849c66-abcb-4cf0-bc79-c716af0e39a9" />
